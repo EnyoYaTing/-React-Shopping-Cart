@@ -3,7 +3,6 @@ import ShoppingCart from './ShoppingCart';
 import Products from './Products';
 import Select from './Select';
 import { DRINKS } from '../shared/drinks';
-// import { CUSTOM } from '../shared/custom';
 import { ICE, SUGAR, INGREDIENT } from '../shared/customs';
 
 class Main extends Component {
@@ -12,7 +11,6 @@ class Main extends Component {
 
     this.state = {
       drinks: DRINKS,
-      // custom: CUSTOM,
       showSelection: false,
       ice: ICE,
       sugar: SUGAR,
@@ -29,7 +27,8 @@ class Main extends Component {
       drinkPrice: 0,
       singleDrinkTotal: 0,
       singleDrinkTotalPrice: 0,
-      cart: []
+      cart: [],
+      totalPrice: 0
     }
 
     this.openSelection = this.openSelection.bind(this);
@@ -140,6 +139,12 @@ class Main extends Component {
   addToCart(item, num, price, ice, sugar, ingredient) {
     let obj = {item, num, price, ice, sugar, ingredient};
     this.state.cart.push(obj);
+
+    let total = this.state.totalPrice + price;
+
+    this.setState({
+      totalPrice: total
+    });
   }
 
   
@@ -148,7 +153,7 @@ class Main extends Component {
       <div>
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
-          <ShoppingCart cart={this.state.cart}/>
+          <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice} />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
                 showSelection={this.state.showSelection} closeSelection={this.closeSelection} 

@@ -12,8 +12,7 @@ function ShoppingCart(props) {
   } else {
       let cart = props.cart.map(item => {
         return (
-          <div className="shoppingCart">
-            <h3> 購物清單 </h3>
+          <div>
             <p> 項目名稱：{item.item} </p>
             <p> 數量：{item.num} </p>
             <p> 價格： {item.price} </p>
@@ -21,17 +20,16 @@ function ShoppingCart(props) {
             <p> 甜度： {item.sugar} </p>
             <p> 加料： {item.ingredient} </p>
             <hr />
-            <p> shopping </p>
-            <hr />
-            <strong> total: </strong>
-            <strong> NT$ 總價 </strong>
           </div>
         );
       })
 
       return (
-        <div>
+        <div className="shoppingCart">
+          <h3> 購物清單 </h3>
           {cart}
+          <strong> total: </strong>
+          <strong> NT$ {props.totalPrice} </strong>
         </div>  
       );
   }
