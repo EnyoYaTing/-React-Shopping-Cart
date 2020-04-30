@@ -67,3 +67,22 @@ hr .line {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 2fr;
 }
+
+.select-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  margin: auto;
+  text-align: left;
+  font-family: arial;
+  padding: 30px;
+}
+
+.shoppingCart {
+  background-color:papayawhip;
+  padding: 20px;
+}
+
+.cart-grid {
+  display: grid;
+  grid-template-columns: 0.2fr 0.1fr 0.1fr  0.1fr ;
+}

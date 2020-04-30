@@ -147,13 +147,25 @@ class Main extends Component {
     });
   }
 
+  // addMoreItem(num, price) {
+  //   let totalNum = this.state.singleDrinkTotal+num;
+  //   let totalPrice = this.state.singleDrinkTotalPrice + price;
+
+  //   this.setState({
+  //     singleDrinkTotal: totalNum,
+  //     singleDrinkTotalPrice: totalPrice
+  //   })
+  // }
+
   
   render() {
     return (
       <div>
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
-          <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice} />
+          <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
+              
+          />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
                 showSelection={this.state.showSelection} closeSelection={this.closeSelection} 

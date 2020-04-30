@@ -6,20 +6,33 @@ function ShoppingCart(props) {
     return (
       <div className="shoppingCart">
         <h3> 購物清單 </h3>
+        <hr />
         <p> 還沒有東西喔 </p>
+        <hr />
+        <strong> total: </strong>
+        <strong> NT$ 0 </strong>
       </div>
     );
   } else {
-      let cart = props.cart.map(item => {
+      let cart = props.cart.map(content => {
+        const {item, num, price, ice, sugar, ingredient} = content;
         return (
           <div>
-            <p> 項目名稱：{item.item} </p>
-            <p> 數量：{item.num} </p>
-            <p> 價格： {item.price} </p>
-            <p> 冰量：{item.ice} </p>
-            <p> 甜度： {item.sugar} </p>
-            <p> 加料： {item.ingredient} </p>
-            <hr />
+            <div className="cart-grid">
+              <div>
+                <strong> {item} </strong>
+              </div>
+              <button> - </button>
+              <p> {num} </p>
+              <button > + </button> 
+            </div>      
+            <div>  
+              <p> 價格： {price} </p>
+              <p> 冰量：{ice} </p>
+              <p> 甜度： {sugar} </p>
+              <p> 加料： {ingredient} </p>
+              <hr />
+            </div>
           </div>
         );
       })
