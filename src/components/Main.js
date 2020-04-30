@@ -28,7 +28,8 @@ class Main extends Component {
       drinkItem: '',
       drinkPrice: 0,
       singleDrinkTotal: 0,
-      singleDrinkTotalPrice: 0
+      singleDrinkTotalPrice: 0,
+      cart: []
     }
 
     this.openSelection = this.openSelection.bind(this);
@@ -41,6 +42,7 @@ class Main extends Component {
     this.addDrinkQuantity = this.addDrinkQuantity.bind(this);
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addDrinkPrice = this.addDrinkPrice.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
  
 
@@ -100,7 +102,6 @@ class Main extends Component {
         (list.check) ? `${list.list} ` : '' 
       );
     })
-
     alert('A name was submitted: ' + this.state.drinkItem+ " " + this.state.iceList + " " + this.state.sugarList + " "+ check);
      
     event.preventDefault();
@@ -135,13 +136,19 @@ class Main extends Component {
     });
   }
 
+  // handle item in cart
+  addToCart(item, num, price, ice, sugar, ingredient) {
+    let obj = {item, num, price, ice, sugar, ingredient};
+    this.state.cart.push(obj);
+  }
+
   
   render() {
     return (
       <div>
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
-          <ShoppingCart />
+          <ShoppingCart cart={this.state.cart}/>
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
                 showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
@@ -153,6 +160,7 @@ class Main extends Component {
                 addDrinkQuantity={this.addDrinkQuantity} singleDrinkTotal={this.state.singleDrinkTotal}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}
                 addDrinkPrice={this.addDrinkPrice} singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
+                addToCart={this.addToCart}
         />  
       </div>
     );
