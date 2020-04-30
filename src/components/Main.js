@@ -27,7 +27,8 @@ class Main extends Component {
       ],
       drinkItem: '',
       drinkPrice: 0,
-      singleDrinkTotal: 0
+      singleDrinkTotal: 0,
+      singleDrinkTotalPrice: 0
     }
 
     this.openSelection = this.openSelection.bind(this);
@@ -39,6 +40,7 @@ class Main extends Component {
     this.addDrinkItem = this.addDrinkItem.bind(this);
     this.addDrinkQuantity = this.addDrinkQuantity.bind(this);
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
+    this.addDrinkPrice = this.addDrinkPrice.bind(this);
   }
  
 
@@ -50,7 +52,9 @@ class Main extends Component {
 
   closeSelection(){
     this.setState({
-      showSelection: false
+      showSelection: false,
+      singleDrinkTotal: 0,
+      singleDrinkTotalPrice: 0
     });  
   }
 
@@ -123,6 +127,14 @@ class Main extends Component {
     })
   }
 
+  // handle Drink Price
+  addDrinkPrice(price) {
+    let total = this.state.singleDrinkTotalPrice + price;
+    this.setState({
+      singleDrinkTotalPrice: total  
+    });
+  }
+
   
   render() {
     return (
@@ -132,7 +144,7 @@ class Main extends Component {
           <ShoppingCart />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
-                showSelection={true} closeSelection={this.closeSelection} 
+                showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
                 handleIceChange={this.handleIceChange} handleSugarChange={this.handleSugarChange}
                 handleIngredientChange={this.handleIngredientChange} handleSubmit={this.handleSubmit}
                 iceList={this.state.iceList} sugarList={this.state.sugarList}
@@ -140,6 +152,7 @@ class Main extends Component {
                 drinkItem={this.state.drinkItem} drinkPrice={this.state.drinkPrice}
                 addDrinkQuantity={this.addDrinkQuantity} singleDrinkTotal={this.state.singleDrinkTotal}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}
+                addDrinkPrice={this.addDrinkPrice} singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
         />  
       </div>
     );

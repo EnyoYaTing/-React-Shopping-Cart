@@ -11,6 +11,7 @@ function Select(props) {
     return(
       <div className="selection row">
         <strong> {props.drinkItem}   NT$ {props.drinkPrice} </strong>
+        <button onClick={props.closeSelection}> X </button>
         <hr />
         <form onSubmit={props.handleSubmit}>
           <div className="ice">
@@ -58,11 +59,11 @@ function Select(props) {
               }) 
             }
           </div>
-          <strong> Total： {props.singleDrinkTotal} </strong> 
+          <strong> total: {props.singleDrinkTotalPrice} </strong>
           <div className="select-button-grid">
               <button onClick={props.deleteDrinkQuantity}> - </button>
               <strong> {props.singleDrinkTotal} </strong>
-              <button onClick={props.addDrinkQuantity}> + </button>
+              <button onClick={() => {props.addDrinkQuantity(); props.addDrinkPrice(props.drinkPrice)}}> + </button>
               <button onClick={props.closeSelection}> 確認 </button>
           </div> 
         </form>  
