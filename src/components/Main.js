@@ -99,13 +99,12 @@ class Main extends Component {
   }
 
   handleSubmit(event) {
-    let check = this.state.ingredientList.map(list => {
-      return(
-        (list.check) ? `${list.list} ` : '' 
-      );
-    })
-    alert('A name was submitted: ' + this.state.drinkItem+ " " + this.state.iceList + " " + this.state.sugarList + " "+ check);
-     
+    // let check = this.state.ingredientList.map(list => {
+    //   return(
+    //     (list.check) ? `${list.list} ` : '' 
+    //   );
+    // })
+    // alert('A name was submitted: ' + this.state.drinkItem+ " " + this.state.iceList + " " + this.state.sugarList + " "+ check);
     event.preventDefault();
   }
 

@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dailydrink
 
-## Available Scripts
-
-In the project directory, you can run:
-
+# In this project directory, you can run:
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Folder Structure:
+dailydrink (project)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+    .
+    ├── ..
+    ├── public                 
+    │   ├── index.html          
+    │   └── assetes          
+    │          └── images                  
+    │                         
+    |   
+    ├── src                            
+    │   ├── app.css
+    │   ├── index.js         
+    │   └── components
+    │       ├── app.js         
+    │       ├── Home.js
+    │       ├── Main.js
+    │       ├── Products.js
+    │       ├── Select.js
+    │       └── ShoppingCart.js                 
+    |   
+    └── README.md 
 
-### `yarn test`
+# How I made my component decision:
+component構思：客戶點了想要的drink product button後，會出現客製化選單（一開始是關閉）， 選單裡面根據喜好選擇想要的冰量甜度..
+     等，也能直接在選單drink增減的數量，接著按下“確認”按鈕，客戶的order會被記錄在購物車裡，購物車裡一樣有drink數量增減功能，
+     也紀錄著顧客的每一份客製化點單，讓顧客能清楚地了解自己點了哪些飲品！
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+UI排版構思：drink product list 佔螢幕大概（7成）， shoppingCart (3成)，這樣一來個顧客可以很清楚的看到產品，又同時能知道自己
+          點了哪些單（也方便做order增減的動作）！
+          選單功能則是希望顧客點了drink的 "+" 按鈕後，會呈現並浮動在螢幕正中間！
 
-### `yarn build`
+1. Home.js : Home Page
+2. Main.js : 用來控制state及傳遞state，其中Main裡面又包含的三個components( Products, Select, ShoppingCart)
+3. Products.js : 用來放所有的 drink product list
+4. Select.js : 客製化選單功能，可以選擇冰量，甜度... 
+5. ShoppingCart.js: 購物車，用來記錄顧客點了哪些order
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 實際開發：
+開發時間： 4/30-5/1 (7小時)
+開發框架：React-CLI, 原生CSS
+實作過程：花了些時間思考 dailydrink app 想呈現給顧客的樣子，並且構圖，有參考“foodpanda”網站，
+   並且思索兩個json檔（./shared/drinks.js和./shared/customs.js）的資料該長什麼樣子，
+   也思索，如何存取state及傳遞給children components
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+未來要改善的地方：
+1. Data Structure: 在customs.js這個json檔裡，存了三筆變數（分別是：ICE, SUGAR 以及INGREDIENT)，
+                    因為時間關係，沒有處理得很好，未來將整合成一筆變數！
+                    這也造成太多repeated的code, 整合之後， 期待程式碼會更加簡潔 
+2. UI原件：因為目標著重於先將功能做出，導致UI呈現的不美觀，也會在改善！                    
