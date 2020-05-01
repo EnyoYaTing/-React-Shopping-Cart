@@ -23,6 +23,7 @@ class Main extends Component {
         {id:2, list: '仙草', check: false},
         {id:3, list: '蘆薈', check: false}
       ],
+      drinkId: '',
       drinkItem: '',
       drinkPrice: 0,
       singleDrinkTotal: 0,
@@ -42,6 +43,7 @@ class Main extends Component {
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addDrinkPrice = this.addDrinkPrice.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.addMoreItem = this.addMoreItem.bind(this);
   }
  
 
@@ -59,8 +61,9 @@ class Main extends Component {
     });  
   }
 
-  addDrinkItem(drink, price) {
+  addDrinkItem(id, drink, price) {
     this.setState({
+      drinkId: id,
       drinkItem: drink,
       drinkPrice: price
     });
@@ -136,8 +139,8 @@ class Main extends Component {
   }
 
   // handle item in cart
-  addToCart(item, num, price, ice, sugar, ingredient) {
-    let obj = {item, num, price, ice, sugar, ingredient};
+  addToCart(id, item, num, price, ice, sugar, ingredient) {
+    let obj = {id, item, num, price, ice, sugar, ingredient};
     this.state.cart.push(obj);
 
     let total = this.state.totalPrice + price;
@@ -147,15 +150,9 @@ class Main extends Component {
     });
   }
 
-  // addMoreItem(num, price) {
-  //   let totalNum = this.state.singleDrinkTotal+num;
-  //   let totalPrice = this.state.singleDrinkTotalPrice + price;
-
-  //   this.setState({
-  //     singleDrinkTotal: totalNum,
-  //     singleDrinkTotalPrice: totalPrice
-  //   })
-  // }
+  addMoreItem(item) {
+    let addItem = this.state.drinks.find
+  }  
 
   
   render() {
@@ -164,7 +161,7 @@ class Main extends Component {
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
-              
+              addMoreItem={this.addMoreItem}
           />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
@@ -173,6 +170,7 @@ class Main extends Component {
                 handleIngredientChange={this.handleIngredientChange} handleSubmit={this.handleSubmit}
                 iceList={this.state.iceList} sugarList={this.state.sugarList}
                 ingredientList={this.state.ingredientList}
+                drinkId={this.state.drinkId}
                 drinkItem={this.state.drinkItem} drinkPrice={this.state.drinkPrice}
                 addDrinkQuantity={this.addDrinkQuantity} singleDrinkTotal={this.state.singleDrinkTotal}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}

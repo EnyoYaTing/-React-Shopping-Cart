@@ -10,7 +10,7 @@ function RenderItems({item, openSelect, addDrinkItem}) {
       <div className="item2">  
         <p> {name} </p>
         <p> NT${price} </p>
-        <button onClick={()=> {openSelect(); addDrinkItem(item.name, item.price)}}> + </button>
+        <button onClick={()=> {openSelect(); addDrinkItem(item.id, item.name, item.price)}}> + </button>
       </div>  
     </div>
   );
