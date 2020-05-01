@@ -17,14 +17,15 @@ function ShoppingCart(props) {
       let cart = props.cart.map(content => {
         const {id, item, num, price, ice, sugar, ingredient} = content;
         return (
-          <div>
+          <div key={id}>
             <div className="cart-grid">
               <div>
                 <strong> {item} </strong> <p> id: {id}</p>
               </div>
               <button > - </button>
               <p> {num} </p>
-              <button onClick={props.addMoreItem({item})}> + </button> 
+              <button> + </button> 
+              {/* <button onClick={props.addMoreItem(id)}> + </button>  */}
             </div>      
             <div>  
               <p> 價格： {price} </p>

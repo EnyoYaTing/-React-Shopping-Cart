@@ -43,7 +43,7 @@ class Main extends Component {
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addDrinkPrice = this.addDrinkPrice.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.addMoreItem = this.addMoreItem.bind(this);
+    // this.addMoreItem = this.addMoreItem.bind(this);
   }
  
 
@@ -150,18 +150,28 @@ class Main extends Component {
     });
   }
 
-  addMoreItem(item) {
-    let addItem = this.state.drinks.find
-  }  
+  // addMoreItem(id) {
+  //   let menuItem = this.state.drinks.find( drink => drink.id === id);
+  //   console.log(menuItem)
+  //   // check if existing
+  //   let existedItem = this.state.cart.find(drink => id === drink.id);
+  //   console.log(existedItem);
 
-  
+  //   let totalNum = existedItem.num + 1;
+  //   let totalPrice = existedItem.price + menuItem.price
+  //   console.log(totalPrice)
+
+  //   // this.setState({
+  //   // })
+  // }  
+
   render() {
     return (
       <div>
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
-              addMoreItem={this.addMoreItem}
+              // addMoreItem={this.addMoreItem}
           />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
