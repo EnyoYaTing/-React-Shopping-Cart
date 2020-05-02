@@ -19,6 +19,13 @@
   .col-12 {width: 100%;}
 }
 
+hr .line {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
 /*********************
  *      Product       *
  *********************/
@@ -64,14 +71,6 @@
   display: block;
 }
 
-
-
-hr .line {
-  border: 0;
-  height: 0;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-}
 
 .main-container {
   display: grid;
@@ -132,15 +131,62 @@ hr .line {
   text-align: center;
 }
 
-
-
-/* 購物車 */
+/*********************
+ *   Shopping Card   *
+ *********************/
 .shoppingCart {
-  background-color:papayawhip;
-  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  background-color: white;
+  padding: 30px 20px 20px 20px;
+}
+
+.cart-title {
+  text-align: center;
+  
+}
+
+p.thick {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+p.light {
+  font-weight: lighter;
+  font-size: 90%;
+}
+
+.shoppingCart .left {
+  text-align: left;
+  float: left;
+}
+
+.shoppingCart .right {
+  text-align: right;
+  float: right;
 }
 
 .cart-grid {
   display: grid;
-  grid-template-columns: 0.2fr 0.1fr 0.1fr  0.1fr ;
+  /* grid-template-columns: auto auto auto auto auto; */
+  grid-template-columns: auto auto auto;
 }
+
+.inline {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+}
+
+.inline button {
+  background-color: #FF88C2;
+  border: none;
+  text-align: center;
+  margin: 10px 10px 10px 10px;
+  border-radius: 4px;
+  /* padding: 5px 5px; */
+}
+
+.inline button:hover {
+  background-color: #FF0088;
+}
+

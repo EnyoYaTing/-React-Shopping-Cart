@@ -5,12 +5,17 @@ function ShoppingCart(props) {
   if (LEN === 0) {
     return (
       <div className="shoppingCart">
-        <h3> 購物清單 </h3>
-        <hr />
-        <p> 還沒有東西喔 </p>
-        <hr />
-        <strong> total: </strong>
-        <strong> NT$ 0 </strong>
+        <div className="cart-title">
+          <p className="thick"> Your Order Summary </p>
+          <p className="light"> - Nothing Here - </p>
+          <hr />
+        </div>
+        <div className="left">  
+          <p className="thick"> Total: </p>
+        </div>
+        <div className="right">  
+          <p className="thick"> NT$ 0 </p>  
+        </div>
       </div>
     );
   } else {
@@ -19,16 +24,17 @@ function ShoppingCart(props) {
         return (
           <div key={id}>
             <div className="cart-grid">
-              <div>
-                <strong> {item} </strong> <p> id: {id}</p>
-              </div>
-              <button > - </button>
-              <p> {num} </p>
-              <button> + </button> 
+                <p className="left"> {item} </p> 
+                <div className="inline">
+                  <button> - </button>
+                  <p> {num} </p>
+                  <button> + </button>
+                </div>
+                <p className="right"> NT$ {price} </p>
+              
               {/* <button onClick={props.addMoreItem(id)}> + </button>  */}
             </div>      
-            <div>  
-              <p> 價格： {price} </p>
+            <div> 
               <p> 冰量：{ice} </p>
               <p> 甜度： {sugar} </p>
               <p> 加料： {ingredient} </p>
@@ -40,10 +46,17 @@ function ShoppingCart(props) {
 
       return (
         <div className="shoppingCart">
-          <h3> 購物清單 </h3>
+          <div className="cart-title">
+            <p className="thick"> Your Order Summary </p>
+            <hr className=""/>
+          </div>
           {cart}
-          <strong> total: </strong>
-          <strong> NT$ {props.totalPrice} </strong>
+          <div className="left">  
+            <p className="thick"> Total: </p>
+          </div>
+          <div className="right">  
+            <p className="thick"> NT$ 0 </p>  
+          </div>
         </div>  
       );
   }
