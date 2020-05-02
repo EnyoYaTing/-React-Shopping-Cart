@@ -1,7 +1,28 @@
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+
 /* product */
 .card-grid {
   padding: 10px;
-  display:inline-block;
+  display: inline-block;
 }
 
 .card {
@@ -30,26 +51,7 @@
   display: block;
 }
 
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
-}
 
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
-}
 
 hr .line {
   border: 0;
@@ -63,20 +65,62 @@ hr .line {
   grid-template-columns: 2fr 1fr;
 }
 
+
+/* Select 選單 */
+.selection {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.select-card {
+  /* sitting on the center */
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
+  width: 500px;
+  margin: auto;
+  font-family: arial;
+  padding: 30px;
+}
+
+.title-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.title1 {
+  font-size: large;  
+}
+
+.title2 {
+  text-align: right;
+}
+
 .select-button-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 2fr;
 }
 
-.select-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  margin: auto;
-  text-align: left;
-  font-family: arial;
-  padding: 30px;
+.select-button-grid p {
+  text-align: center;
 }
 
+
+
+/* 購物車 */
 .shoppingCart {
   background-color:papayawhip;
   padding: 20px;
