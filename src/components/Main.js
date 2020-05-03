@@ -12,6 +12,7 @@ class Main extends Component {
     this.state = {
       drinks: DRINKS,
       showSelection: false,
+
       ice: ICE,
       sugar: SUGAR,
       ingredient: INGREDIENT,
@@ -46,7 +47,6 @@ class Main extends Component {
     // this.addMoreItem = this.addMoreItem.bind(this);
   }
  
-
   openSelection() {
     this.setState({
       showSelection: true,
