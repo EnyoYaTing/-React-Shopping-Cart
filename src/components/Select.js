@@ -13,8 +13,8 @@ function Select(props) {
         <div className="select-card">
           <button onClick={props.closeSelection}> X </button>
           <div className="title-grid">
-            <div className="title1"> <strong> {props.drinkItem}  </strong> </div>
-            <div className="title2"> <strong> NT$ {props.drinkPrice} </strong> </div>
+            <div className="title1"> <strong> {props.selectedItem.name}  </strong> </div>
+            <div className="title2"> <strong> NT$ {props.selectedItem.price} </strong> </div>
           </div>
           <hr />
           <form onSubmit={props.handleSubmit}>

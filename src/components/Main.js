@@ -24,9 +24,9 @@ class Main extends Component {
         {id:2, list: '仙草', check: false},
         {id:3, list: '蘆薈', check: false}
       ],
-      drinkId: '',
-      drinkItem: '',
-      drinkPrice: 0,
+
+      selectedItem: {},
+
       singleDrinkTotal: 0,
       singleDrinkTotalPrice: 0,
       cart: [],
@@ -35,11 +35,12 @@ class Main extends Component {
 
     this.openSelection = this.openSelection.bind(this);
     this.closeSelection = this.closeSelection.bind(this);
+    this.addDrinkItemToSelection = this.addDrinkItemToSelection.bind(this);
+
     this.handleIceChange = this.handleIceChange.bind(this);
     this.handleSugarChange = this.handleSugarChange.bind(this);
     this.handleIngredientChange = this.handleIngredientChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addDrinkItem = this.addDrinkItem.bind(this);
     this.addDrinkQuantity = this.addDrinkQuantity.bind(this);
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addDrinkPrice = this.addDrinkPrice.bind(this);
@@ -61,12 +62,12 @@ class Main extends Component {
     });  
   }
 
-  addDrinkItem(id, drink, price) {
+  addDrinkItemToSelection(id) {
+    let addeditem = this.state.drinks.find((item) => item.id === id)
+
     this.setState({
-      drinkId: id,
-      drinkItem: drink,
-      drinkPrice: price
-    });
+      selectedItem: addeditem
+    })
   }
 
   handleIceChange = (e) => {
@@ -168,23 +169,22 @@ class Main extends Component {
     return (
       <div>
         <div className="main-container">
-          <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItem={this.addDrinkItem} />
+          <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItemToSelection={this.addDrinkItemToSelection}/>
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
               // addMoreItem={this.addMoreItem}
           />
         </div>  
         <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
                 showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
+                selectedItem={this.state.selectedItem}
                 handleIceChange={this.handleIceChange} handleSugarChange={this.handleSugarChange}
                 handleIngredientChange={this.handleIngredientChange} handleSubmit={this.handleSubmit}
                 iceList={this.state.iceList} sugarList={this.state.sugarList}
                 ingredientList={this.state.ingredientList}
-                drinkId={this.state.drinkId}
-                drinkItem={this.state.drinkItem} drinkPrice={this.state.drinkPrice}
                 addDrinkQuantity={this.addDrinkQuantity} singleDrinkTotal={this.state.singleDrinkTotal}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}
                 addDrinkPrice={this.addDrinkPrice} singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
-                addToCart={this.addToCart}
+                addToCart={this.addToCart}    
         />  
       </div>
     );

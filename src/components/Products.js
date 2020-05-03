@@ -1,7 +1,7 @@
 import React from 'react';
 
-function RenderItems({item, openSelect, addDrinkItem}) {
-  const {name, price, image} = item;
+function RenderItems({item, openSelect, addDrinkItemToSelection}) {
+  const {id, name, price, image} = item;
   return (
     <div className="card">
       <div>
@@ -10,7 +10,7 @@ function RenderItems({item, openSelect, addDrinkItem}) {
       <div>  
         <p> {name} </p>
         <p> NT${price} </p>
-        <button onClick={()=> {openSelect(); addDrinkItem(item.id, item.name, item.price)}}> + </button>
+        <button onClick={()=> {openSelect(); addDrinkItemToSelection(id)}} > + </button>
       </div>  
     </div>
   );
@@ -21,7 +21,7 @@ function Products(props) {
     return (
       <div className="card-horzontal" key={item.id} >
         <RenderItems  item={item} openSelect={props.openSelection} 
-                      addDrinkItem={props.addDrinkItem}
+                      addDrinkItemToSelection={props.addDrinkItemToSelection}
         />
       </div>  
     );  
