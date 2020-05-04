@@ -82,7 +82,7 @@ function Select(props) {
                 <button onClick={props.deleteDrinkQuantity}> - </button>
                 <p> <strong> {props.drinkQuantity} </strong> </p>
                 <button onClick={() => {props.addDrinkQuantity()}}> + </button>
-                <button disabled={!props.singleDrinkTotal} onClick={()=> {props.closeSelection(); 
+                <button disabled={!props.drinkQuantity} onClick={()=> {props.closeSelection(); 
                       props.addToCart(props.drinkId, props.drinkItem, props.singleDrinkTotal, props.singleDrinkTotalPrice, 
                       props.iceList, props.sugarList)}
                 }> 

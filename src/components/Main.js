@@ -26,7 +26,6 @@ class Main extends Component {
       ],
 
       selectedItem: {},
-      // singleDrinkTotal: 0,
       drinkQuantity: 0,
       cart: [],
       totalPrice: 0
@@ -108,7 +107,6 @@ class Main extends Component {
     event.preventDefault();
   }
   
-
   // handle Drink Quantity
   addDrinkQuantity() {
     let total = this.state.drinkQuantity+1; 
@@ -119,14 +117,14 @@ class Main extends Component {
 
   deleteDrinkQuantity() {
     let total;
-    if (this.state.singleDrinkTotal === 0) {
+    if (this.state.drinkQuantity === 0) {
       total = 0;
     } else {
-      total = this.state.singleDrinkTotal-1;
+      total = this.state.drinkQuantity-1;
     }
 
     this.setState({
-      singleDrinkTotal: total   
+      drinkQuantity: total   
     })
   }
 
