@@ -78,12 +78,10 @@ function Select(props) {
               }
             </div>
             <hr />
-            <strong> total: NT$ {props.singleDrinkTotalPrice} </strong>
-            <hr />
             <div className="select-button-grid">
                 <button onClick={props.deleteDrinkQuantity}> - </button>
                 <p> <strong> {props.singleDrinkTotal} </strong> </p>
-                <button onClick={() => {props.addDrinkQuantity(); props.addDrinkPrice(props.drinkPrice)}}> + </button>
+                <button onClick={() => {props.addDrinkQuantity()}}> + </button>
                 <button disabled={!props.singleDrinkTotal} onClick={()=> {props.closeSelection(); 
                       props.addToCart(props.drinkId, props.drinkItem, props.singleDrinkTotal, props.singleDrinkTotalPrice, 
                       props.iceList, props.sugarList)}
