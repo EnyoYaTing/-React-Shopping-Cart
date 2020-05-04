@@ -26,8 +26,8 @@ class Main extends Component {
       ],
 
       selectedItem: {},
-
-      singleDrinkTotal: 0,
+      // singleDrinkTotal: 0,
+      drinkQuantity: 0,
       cart: [],
       totalPrice: 0
     }
@@ -40,6 +40,7 @@ class Main extends Component {
     this.handleSugarChange = this.handleSugarChange.bind(this);
     this.handleIngredientChange = this.handleIngredientChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
     this.addDrinkQuantity = this.addDrinkQuantity.bind(this);
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addToCart = this.addToCart.bind(this);
@@ -110,9 +111,9 @@ class Main extends Component {
 
   // handle Drink Quantity
   addDrinkQuantity() {
-    let total = this.state.singleDrinkTotal+1; 
+    let total = this.state.drinkQuantity+1; 
     this.setState({
-      singleDrinkTotal: total   
+      drinkQuantity: total   
     })
   }
 
@@ -172,7 +173,7 @@ class Main extends Component {
                 handleIngredientChange={this.handleIngredientChange} handleSubmit={this.handleSubmit}
                 iceList={this.state.iceList} sugarList={this.state.sugarList}
                 ingredientList={this.state.ingredientList}
-                addDrinkQuantity={this.addDrinkQuantity} singleDrinkTotal={this.state.singleDrinkTotal}
+                addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}
                 singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
                 addToCart={this.addToCart}    
