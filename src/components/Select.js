@@ -1,7 +1,37 @@
 import React from 'react';
 
+let RenderChoices = ({item}) => {
+  let {title, data} = item;
+  
+  let label = data.map( elem => {
+    return (
+      <li>
+        <label> 
+          <input type="radio" value={elem}/>
+          <span> {elem} </span>
+        </label>
+      </li> 
+    );
+  })
+
+  return (
+    <div>
+      <strong> {title} </strong>
+      {label}
+      <hr />
+    </div>  
+  );  
+}
+
 function Select(props) {
   let selection = props.showSelection ? 1 : 0;
+  let choices = props.choices.map((item)=>{
+    return (
+      <div>
+        <RenderChoices item={item} key={item.id}/>
+      </div>  
+    );
+  })
 
   if (!selection) {
     return(
@@ -17,66 +47,12 @@ function Select(props) {
             <div className="title2"> <strong> NT$ {props.selectedItem.price} </strong> </div>
           </div>
           <hr />
+
           <form onSubmit={props.handleSubmit}>
-            <div className="ice">
-              <strong> 冰量： </strong>
-              <hr /> 
-              { props.ice.map(item => {
-                  return(
-                    <div>
-                      <label key={item.id}> 
-                        <input type="radio" value={item.name} 
-                                checked={props.iceList === item.name} 
-                                onChange={props.handleIceChange}
-                        />
-                        <span> {item.name} </span>
-                      </label>
-                      <br />
-                    </div>
-                  );
-                }) 
-              }
-            </div>
-            <hr />
-            <div className="sugar">
-              <strong> 甜度： </strong> 
-              <hr />
-              { props.sugar.map(item => {
-                  return(
-                    <div>
-                      <label key={item.id}> 
-                        <input type="radio" value={item.name} 
-                                checked={props.sugarList === item.name} 
-                                onChange={props.handleSugarChange}
-                        />
-                        <span> {item.name} </span>
-                      </label>
-                      <br />
-                    </div>
-                  );
-                }) 
-              }
-            </div>
-            <hr />
-            <div className="ingre">
-              <strong> 加料：</strong> 
-              <hr />
-              { props.ingredient.map((item, index) => {
-                  return(
-                    <div>
-                      <label key={item.id}> 
-                        <input type="checkbox" value={item.name} 
-                                checked={props.ingredientList.check} 
-                                onChange={props.handleIngredientChange.bind(this, index)}
-                        />
-                        <span> {item.name} </span>
-                      </label>
-                      <br />
-                    </div>
-                  );
-                }) 
-              }
-            </div>
+            <ul>
+              {choices}
+            </ul>
+
             <hr />
             <div className="select-button-grid">
                 <button onClick={props.deleteDrinkQuantity}> - </button>
@@ -90,6 +66,7 @@ function Select(props) {
                 </button>
             </div> 
           </form>
+
         </div>    
       </div>  
     );

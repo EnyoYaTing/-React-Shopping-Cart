@@ -3,7 +3,9 @@ import ShoppingCart from './ShoppingCart';
 import Products from './Products';
 import Select from './Select';
 import { DRINKS } from '../shared/drinks';
+import { CUSTOM_CHOICE } from '../shared/customChoice';
 import { ICE, SUGAR, INGREDIENT } from '../shared/customs';
+import TestSelect from './TestSelect';
 
 class Main extends Component {
   constructor(props) {
@@ -11,6 +13,7 @@ class Main extends Component {
 
     this.state = {
       drinks: DRINKS,
+      customChoices: CUSTOM_CHOICE,
       showSelection: false,
 
       ice: ICE,
@@ -174,8 +177,10 @@ class Main extends Component {
                 addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
                 deleteDrinkQuantity={this.deleteDrinkQuantity}
                 singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
-                addToCart={this.addToCart}    
-        />  
+                addToCart={this.addToCart}   choices={this.state.customChoices} 
+        />
+        {/* <TestSelect choices={this.state.customChoices} />   */}
+        
       </div>
     );
   }
