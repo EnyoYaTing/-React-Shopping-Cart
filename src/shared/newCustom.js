@@ -1,4 +1,4 @@
-export const CUSTOM = [
+export const CUSTOM_CHOICE = [
   { 
     id: 1,
     title: '冰量',
