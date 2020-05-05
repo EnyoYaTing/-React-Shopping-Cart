@@ -1,22 +1,32 @@
 import React from 'react';
 // import Radio from './Radio';
 import Checkbox from './Checkbox';
+import Radio from './Radio';
 
 function Select(props) {
   let selection = props.showSelection ? 1 : 0;
-  let choices = props.choices.map((item)=>{
-    return (
-      <div>
-        <RenderChoices key={item.id} item={item} 
-            selectedRadio={props.selectedRadio} onRadioChange={props.onRadioChange}
-        />
-      </div>  
-    );
+  let ice = props.ice.map((option)=>{
+    
+    return(
+      <Radio key={option.id} id={option.id} value={option.value} 
+            ischecked={props.slecIce === option.value} onChange={props.onIceRadioChange}
+      />
+    )    
   })
+
+  let sugar = props.sugar.map((option)=>{
+    
+    return(
+      <Radio key={option.id} id={option.id} value={option.value} 
+            ischecked={props.slecSugar === option.value} onChange={props.onSugarRadioChange}
+      />
+    )    
+  })
+
   let ingredient = props.ingredient.map((option) => {
     return(
-      <Checkbox id={option.id} value={option.value} ischecked={option.isChecked} 
-                handleCheckbox={props.handleCheckbox}
+      <Checkbox key={option.id} id={option.id} value={option.value} 
+                ischecked={option.isChecked} handleCheckbox={props.handleCheckbox}
       />
     );
   })
@@ -37,10 +47,9 @@ function Select(props) {
           <hr />
 
           <form onSubmit={props.handleSubmit}>
-            {choices}
-            <hr />
-            {ingredient}
-            <hr />
+            <p>冰量</p> {ice} <hr />
+            <p>甜度</p> {sugar} <hr />
+            <p>加料</p> {ingredient} <hr />
             <div className="select-button-grid">
                 <button onClick={props.deleteDrinkQuantity}> - </button>
                 <p> <strong> {props.drinkQuantity} </strong> </p>
@@ -58,33 +67,6 @@ function Select(props) {
       </div>  
     );
   }
-}
-
-let RenderChoices = ({item, selectedRadio, onRadioChange}) => {
-  let {id, title, data} = item;
-  
-  let label = 
-    <ul> 
-      <strong> {title} </strong>
-      {data.map( elem => {
-        return (
-          <li>
-            <label> 
-              <input type="radio" value={elem} 
-                  checked={selectedRadio === elem} onChange={onRadioChange}
-              />
-              <span> {elem} </span>
-            </label>
-          </li> 
-        );
-      })}
-    </ul>
-
-  return (
-    <div>
-      {label} 
-    </div>  
-  );  
 }
 
 export default Select;

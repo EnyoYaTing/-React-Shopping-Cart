@@ -2,17 +2,12 @@ import React from 'react';
 
 const Radio = (props) => {
   return (
-    <ul>
-      <strong> {title} </strong>
-      {data.map( elem => {
-        <li>
-          <label> 
-            <input type="radio" value={elem} checked={selectedRadio === elem} onChange={onRadioChange}/>
-            <span> {elem} </span>
-          </label>
-        </li>
-      })}
-    </ul>  
+    <li>
+      <label>
+        <input type="radio" value={props.value} checked={props.ischecked} onChange={props.onChange}/>
+        <span> {props.value} </span>
+      </label>  
+    </li>  
   );
 }
 
