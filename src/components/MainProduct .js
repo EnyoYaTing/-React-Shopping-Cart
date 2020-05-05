@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import ShoppingCart from './ShoppingCart';
-import Products from './Products';
-import Select from './Select';
+import ShoppingCart from './products/ShoppingCart';
+import Products from './products/Products';
+import Select from './products/Select';
 import { DRINKS } from '../shared/drinks';
 import { ICE, SUGAR, INGREDIENT } from '../shared/customChoice';
-import TestSelect from './TestSelect';
-// import { TEST } from '../shared/test';
+import TestSelect from './products/TestSelect';
 
-class Main extends Component {
+
+class MainProduct extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +20,6 @@ class Main extends Component {
       selectedItem: {},
       slecIce: '',
       slecSugar: '',
-
       drinkQuantity: 0,
       cart: [],
       totalPrice: 0,
@@ -51,7 +50,6 @@ class Main extends Component {
     })
   }
   
-  // ---- 測試中 ----
   onIceRadioChange = (e) => {
     this.setState({
       slecIce: e.target.value
@@ -63,9 +61,7 @@ class Main extends Component {
       slecSugar : e.target.value
     });
   }
-  // --- 測試中 ---
   
-
   handleCheckbox = (e) => {
     let ingredient = this.state.ingredient
     ingredient.forEach(item => {
@@ -121,7 +117,6 @@ class Main extends Component {
     });
   }
 
-
   render() {
     return (
       <div>
@@ -132,14 +127,12 @@ class Main extends Component {
         </div>  
         <Select
           showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
-          selectedItem={this.state.selectedItem} ice={this.state.ice}
-          sugar={this.state.sugar}  ingredient={this.state.ingredient}  
+          selectedItem={this.state.selectedItem} ice={this.state.ice} sugar={this.state.sugar}  
+          ingredient={this.state.ingredient} drinkQuantity={this.state.drinkQuantity}
           slecIce={this.state.slecIce} slecSugar={this.state.slecSugar} 
           onSugarRadioChange={this.onSugarRadioChange} handleCheckbox={this.handleCheckbox}
-          onIceRadioChange={this.onIceRadioChange}
-
-          handleSubmit={this.handleSubmit}
-          addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
+          onIceRadioChange={this.onIceRadioChange} handleSubmit={this.handleSubmit}
+          addDrinkQuantity={this.addDrinkQuantity} 
           deleteDrinkQuantity={this.deleteDrinkQuantity}
           singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
           addToCart={this.addToCart}   
@@ -164,4 +157,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default MainProduct;

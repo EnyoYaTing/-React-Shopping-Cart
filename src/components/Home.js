@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Main from './Main';
+import MainProduct  from './MainProduct ';
 
 class Home extends Component {
   render() {
     return (
       <div className="homepage row">
-          <Main />
+          <MainProduct />
       </div>  
     );
   }
