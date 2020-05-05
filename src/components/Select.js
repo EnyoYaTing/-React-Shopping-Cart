@@ -1,35 +1,23 @@
 import React from 'react';
+import Checkbox from './Checkbox';
 
-let RenderChoices = ({item}) => {
-  let {title, data} = item;
-  
-  let label = data.map( elem => {
-    return (
-      <li>
-        <label> 
-          <input type="radio" value={elem}/>
-          <span> {elem} </span>
-        </label>
-      </li> 
-    );
-  })
-
-  return (
-    <div>
-      <strong> {title} </strong>
-      {label}
-      <hr />
-    </div>  
-  );  
-}
 
 function Select(props) {
   let selection = props.showSelection ? 1 : 0;
   let choices = props.choices.map((item)=>{
     return (
       <div>
-        <RenderChoices item={item} key={item.id}/>
+        <RenderChoices key={item.id} item={item} 
+            selectedRadio={props.selectedRadio} onRadioChange={props.onRadioChange}
+        />
       </div>  
+    );
+  })
+  let ingredient = props.ingredient.map((option) => {
+    return(
+      <Checkbox id={option.id} value={option.value} ischecked={option.isChecked} 
+                handleCheckbox={props.handleCheckbox}
+      />
     );
   })
 
@@ -49,10 +37,9 @@ function Select(props) {
           <hr />
 
           <form onSubmit={props.handleSubmit}>
-            <ul>
-              {choices}
-            </ul>
-
+            {choices}
+            <hr />
+            {ingredient}
             <hr />
             <div className="select-button-grid">
                 <button onClick={props.deleteDrinkQuantity}> - </button>
@@ -71,7 +58,34 @@ function Select(props) {
       </div>  
     );
   }
+}
+
+let RenderChoices = ({item, selectedRadio, onRadioChange}) => {
+  let {id, title, data} = item;
   
+  let label = 
+    <ul> 
+      <strong> {title} </strong>
+      {data.map( elem => {
+
+          return (
+            <li>
+              <label> 
+                <input type="radio" value={elem} 
+                  checked={selectedRadio === elem} onChange={onRadioChange}
+                />
+                <span> {elem} </span>
+              </label>
+            </li> 
+          );
+        })}
+    </ul>
+
+  return (
+    <div>
+      {label} 
+    </div>  
+  );  
 }
 
 export default Select;

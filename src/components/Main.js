@@ -3,9 +3,9 @@ import ShoppingCart from './ShoppingCart';
 import Products from './Products';
 import Select from './Select';
 import { DRINKS } from '../shared/drinks';
-import { CUSTOM_CHOICE } from '../shared/customChoice';
-import { ICE, SUGAR, INGREDIENT } from '../shared/customs';
+import { CUSTOM_CHOICE, INGREDIENT } from '../shared/customChoice';
 import TestSelect from './TestSelect';
+// import { TEST } from '../shared/test';
 
 class Main extends Component {
   constructor(props) {
@@ -14,39 +14,30 @@ class Main extends Component {
     this.state = {
       drinks: DRINKS,
       customChoices: CUSTOM_CHOICE,
-      showSelection: false,
-
-      ice: ICE,
-      sugar: SUGAR,
       ingredient: INGREDIENT,
-      iceList: '正常冰',
-      sugarList: '正常糖',
-      ingredientList: [
-        {id:0, list: '珍珠', check: false},
-        {id:1, list: '椰果', check: false},
-        {id:2, list: '仙草', check: false},
-        {id:3, list: '蘆薈', check: false}
-      ],
-
+      showSelection: false,
       selectedItem: {},
+      selectedRadio: {
+        title:'',
+        option: ''
+      }, 
+
       drinkQuantity: 0,
       cart: [],
-      totalPrice: 0
+      totalPrice: 0,
     }
 
     this.openSelection = this.openSelection.bind(this);
     this.closeSelection = this.closeSelection.bind(this);
     this.addDrinkItemToSelection = this.addDrinkItemToSelection.bind(this);
 
-    this.handleIceChange = this.handleIceChange.bind(this);
-    this.handleSugarChange = this.handleSugarChange.bind(this);
-    this.handleIngredientChange = this.handleIngredientChange.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.onRadioChange = this.onRadioChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.addDrinkQuantity = this.addDrinkQuantity.bind(this);
     this.deleteDrinkQuantity = this.deleteDrinkQuantity.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    // this.addMoreItem = this.addMoreItem.bind(this);
   }
  
   openSelection() {
@@ -58,8 +49,7 @@ class Main extends Component {
   closeSelection(){
     this.setState({
       showSelection: false,
-      singleDrinkTotal: 0,
-      singleDrinkTotalPrice: 0
+      drinkQuantity: 0
     });  
   }
 
@@ -70,43 +60,31 @@ class Main extends Component {
       selectedItem: addeditem
     })
   }
-
-  handleIceChange = (e) => {
+  
+  // ---- 測試中 ----
+  onRadioChange = (e) => {
     this.setState({
-      iceList: e.target.value
+      selectedRadio : e.target.value
     });
-    console.log(this.state.iceList)
   }
+  // --- 測試中 ---
 
-  handleSugarChange = (e) => {
-    this.setState({
-      sugarList: e.target.value
-    });
-    console.log(this.state.sugarList)
-  }
-
-  handleIngredientChange(index){
-    let arrLists = this.state.ingredientList
-    
-    if (arrLists[index].check) {
-      arrLists[index].check = false; 
-    }   
-    else {
-      arrLists[index].check = true;
-    }
-
-    this.setState({
-      ingredientList: arrLists
+  handleCheckbox = (e) => {
+    let ingredient = this.state.ingredient
+    ingredient.forEach(item => {
+       if (item.value === e.target.value)
+          item.isChecked =  e.target.checked
     })
+    this.setState({ingredient: ingredient})
   }
-
+  
   handleSubmit(event) {
-    // let check = this.state.ingredientList.map(list => {
-    //   return(
-    //     (list.check) ? `${list.list} ` : '' 
-    //   );
-    // })
-    // alert('A name was submitted: ' + this.state.drinkItem+ " " + this.state.iceList + " " + this.state.sugarList + " "+ check);
+    let check = this.state.ingredient.map(list => {
+      return(
+        (list.isChecked) ? `${list.value} ` : '' 
+      );
+    })
+    alert('A name was submitted: ' + " " + check);
     event.preventDefault();
   }
   
@@ -143,20 +121,6 @@ class Main extends Component {
     });
   }
 
-  // addMoreItem(id) {
-  //   let menuItem = this.state.drinks.find( drink => drink.id === id);
-  //   console.log(menuItem)
-  //   // check if existing
-  //   let existedItem = this.state.cart.find(drink => id === drink.id);
-  //   console.log(existedItem);
-
-  //   let totalNum = existedItem.num + 1;
-  //   let totalPrice = existedItem.price + menuItem.price
-  //   console.log(totalPrice)
-
-  //   // this.setState({
-  //   // })
-  // }  
 
   render() {
     return (
@@ -164,22 +128,32 @@ class Main extends Component {
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItemToSelection={this.addDrinkItemToSelection}/>
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
-              // addMoreItem={this.addMoreItem}
           />
         </div>  
-        <Select ice={this.state.ice} sugar={this.state.sugar} ingredient={this.state.ingredient}
-                showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
-                selectedItem={this.state.selectedItem}
-                handleIceChange={this.handleIceChange} handleSugarChange={this.handleSugarChange}
-                handleIngredientChange={this.handleIngredientChange} handleSubmit={this.handleSubmit}
-                iceList={this.state.iceList} sugarList={this.state.sugarList}
-                ingredientList={this.state.ingredientList}
-                addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
-                deleteDrinkQuantity={this.deleteDrinkQuantity}
-                singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
-                addToCart={this.addToCart}   choices={this.state.customChoices} 
+        <Select 
+          showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
+          selectedItem={this.state.selectedItem} choices={this.state.customChoices}
+          ingredient={this.state.ingredient}   handleCheckbox={this.handleCheckbox}
+          
+          selectedRadio={this.state.selectedRadio } 
+          onRadioChange={this.onRadioChange} handleSubmit={this.handleSubmit}
+          addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
+          deleteDrinkQuantity={this.deleteDrinkQuantity}
+          singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
+          addToCart={this.addToCart}   
         />
-        {/* <TestSelect choices={this.state.customChoices} />   */}
+        {/* <TestSelect
+          showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
+          selectedItem={this.state.selectedItem} choices={this.state.customChoices}
+          ingredient={this.state.ingredient}  
+          selectedRadio={this.state.selectedRadio }  handleCheckbox={this.handleCheckbox}
+
+          onRadioChange={this.onRadioChange} handleSubmit={this.handleSubmit}
+          addDrinkQuantity={this.addDrinkQuantity} drinkQuantity={this.state.drinkQuantity}
+          deleteDrinkQuantity={this.deleteDrinkQuantity}
+          singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
+          addToCart={this.addToCart}   
+        /> */}
         
       </div>
     );
