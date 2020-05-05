@@ -20,14 +20,14 @@ function ShoppingCart(props) {
     );
   } else {
       let cart = props.cart.map(content => {
-        const {id, item, num, price, ice, sugar, ingredient} = content;
+        const {id, drink, quantity, ice, sugar, ingredient, price} = content;
         return (
           <div key={id}>
             <div className="cart-grid">
-                <p className="left"> {item} </p> 
+                <p className="left"> {id} {drink} </p> 
                 <div className="inline">
                   <button> - </button>
-                  <p> {num} </p>
+                  <p> {quantity} </p>
                   <button> + </button>
                 </div>
                 <p className="right"> NT$ {price} </p>
@@ -35,9 +35,9 @@ function ShoppingCart(props) {
               {/* <button onClick={props.addMoreItem(id)}> + </button>  */}
             </div>      
             <div> 
-              <p> 冰量：{ice} </p>
+              <p> 冰量： {ice} </p>
               <p> 甜度： {sugar} </p>
-              <p> 加料： {ingredient} </p>
+              <p> 加料： {ingredient.map(item => { return item + " "})} </p>
               <hr />
             </div>
           </div>

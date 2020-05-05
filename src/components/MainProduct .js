@@ -21,6 +21,7 @@ class MainProduct extends Component {
       slecIce: '',
       slecSugar: '',
       drinkQuantity: 0,
+      
       cart: [],
       totalPrice: 0,
     }
@@ -72,16 +73,16 @@ class MainProduct extends Component {
   }
   
   handleSubmit = (event) => {
-    let check = this.state.ingredient.map(list => {
-      return(
-        (list.isChecked) ? `${list.value} ` : '' 
-      );
-    })
-
-    let ice = this.state.slecIce;
-    let sugar = this.state.slecSugar;
-    alert('A name was submitted: ' + " " + ice + " " + sugar + " " + check);
     event.preventDefault();
+    // let check = this.state.ingredient.map(list => {
+    //   return(
+    //     (list.isChecked) ? `${list.value} ` : '' 
+    //   );
+    // })
+
+    // let ice = this.state.slecIce;
+    // let sugar = this.state.slecSugar;
+    // alert('A name was submitted: ' + " " + ice + " " + sugar + " " + check);
   }
   
   // handle Drink Quantity
@@ -106,15 +107,18 @@ class MainProduct extends Component {
   }
 
   // handle item in cart
-  addToCart(id, item, num, price, ice, sugar, ingredient) {
-    let obj = {id, item, num, price, ice, sugar, ingredient};
+  addToCart() {
+    let id = this.state.selectedItem.id;
+    let drink = this.state.selectedItem.name;
+    let quantity = this.state.drinkQuantity;
+    let sugar = this.state.slecSugar;
+    let ice = this.state.slecIce;
+    let check = this.state.ingredient.filter(item => item.isChecked === true);
+    let ingredient = check.map( i =>{ return i.value });
+    let price = (this.state.selectedItem.price) * (this.state.drinkQuantity);
+    let obj = {id, drink, quantity, ice, sugar, ingredient, price};
+    
     this.state.cart.push(obj);
-
-    let total = this.state.totalPrice + price;
-
-    this.setState({
-      totalPrice: total
-    });
   }
 
   render() {
@@ -125,19 +129,18 @@ class MainProduct extends Component {
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
           />
         </div>  
-        <Select
+        {/* <Select
           showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
           selectedItem={this.state.selectedItem} ice={this.state.ice} sugar={this.state.sugar}  
           ingredient={this.state.ingredient} drinkQuantity={this.state.drinkQuantity}
           slecIce={this.state.slecIce} slecSugar={this.state.slecSugar} 
           onSugarRadioChange={this.onSugarRadioChange} handleCheckbox={this.handleCheckbox}
           onIceRadioChange={this.onIceRadioChange} handleSubmit={this.handleSubmit}
-          addDrinkQuantity={this.addDrinkQuantity} 
-          deleteDrinkQuantity={this.deleteDrinkQuantity}
+          addDrinkQuantity={this.addDrinkQuantity} deleteDrinkQuantity={this.deleteDrinkQuantity}
           singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
           addToCart={this.addToCart}   
-        />
-        {/* <TestSelect
+        /> */}
+        <TestSelect
           showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
           selectedItem={this.state.selectedItem} ice={this.state.ice}
           sugar={this.state.sugar}  ingredient={this.state.ingredient}  
@@ -150,7 +153,7 @@ class MainProduct extends Component {
           deleteDrinkQuantity={this.deleteDrinkQuantity}
           singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
           addToCart={this.addToCart}   
-        /> */}
+        />
         
       </div>
     );

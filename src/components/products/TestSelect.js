@@ -41,6 +41,7 @@ function Select(props) {
         <div className="select-card">
           <button onClick={props.closeSelection}> X </button>
           <div className="title-grid">
+            {/* <div className="title1"> <strong> {props.selectedItem.id}  </strong> </div> */}
             <div className="title1"> <strong> {props.selectedItem.name}  </strong> </div>
             <div className="title2"> <strong> NT$ {props.selectedItem.price} </strong> </div>
           </div>
@@ -54,9 +55,8 @@ function Select(props) {
                 <button onClick={props.deleteDrinkQuantity}> - </button>
                 <p> <strong> {props.drinkQuantity} </strong> </p>
                 <button onClick={() => {props.addDrinkQuantity()}}> + </button>
-                <button disabled={!props.drinkQuantity} onClick={()=> {props.closeSelection(); 
-                      props.addToCart(props.drinkId, props.drinkItem, props.singleDrinkTotal, props.singleDrinkTotalPrice, 
-                      props.iceList, props.sugarList)}
+                <button disabled={!props.drinkQuantity} 
+                        onClick={()=> {props.closeSelection(); props.addToCart() }
                 }> 
                   確認
                 </button>
