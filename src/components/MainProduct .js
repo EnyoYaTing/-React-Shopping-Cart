@@ -129,7 +129,7 @@ class MainProduct extends Component {
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
           />
         </div>  
-        {/* <Select
+        <Select
           showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
           selectedItem={this.state.selectedItem} ice={this.state.ice} sugar={this.state.sugar}  
           ingredient={this.state.ingredient} drinkQuantity={this.state.drinkQuantity}
@@ -139,8 +139,8 @@ class MainProduct extends Component {
           addDrinkQuantity={this.addDrinkQuantity} deleteDrinkQuantity={this.deleteDrinkQuantity}
           singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
           addToCart={this.addToCart}   
-        /> */}
-        <TestSelect
+        />
+        {/* <TestSelect
           showSelection={this.state.showSelection} closeSelection={this.closeSelection} 
           selectedItem={this.state.selectedItem} ice={this.state.ice}
           sugar={this.state.sugar}  ingredient={this.state.ingredient}  
@@ -153,7 +153,7 @@ class MainProduct extends Component {
           deleteDrinkQuantity={this.deleteDrinkQuantity}
           singleDrinkTotalPrice={this.state.singleDrinkTotalPrice}
           addToCart={this.addToCart}   
-        />
+        /> */}
         
       </div>
     );
