@@ -21,7 +21,6 @@ class MainProduct extends Component {
       slecIce: '',
       slecSugar: '',
       drinkQuantity: 0,
-      
       cart: [],
       totalPrice: 0,
     }
