@@ -24,6 +24,8 @@ class MainProduct extends Component {
       cart: [],
       totalPrice: 0,
     }
+
+    this.addQuantityInCart = this.addQuantityInCart.bind(this) 
   }
  
   openSelection = () => {
@@ -106,7 +108,8 @@ class MainProduct extends Component {
 
   // handle item in cart
   addToCart = () => {
-    let id = this.state.selectedItem.id;
+    // let id = this.state.selectedItem.id;
+    let id = this.state.cart.length;
     let name = this.state.selectedItem.name;
     let quantity = this.state.drinkQuantity;
     let sugar = this.state.slecSugar;
@@ -119,30 +122,45 @@ class MainProduct extends Component {
     this.state.cart.push(obj);
   }
 
-
-  // --- 測試中 ----
   addQuantityInCart = (id) =>{
-   let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
-   let obj = this.state.cart.find(item => item.id === id) //obj in cart
-   obj.quantity += 1;
-   let cart = this.state.cart.splice(indexOfItemInArray, 1, obj);
+    let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
+    this.state.cart[indexOfItemInArray].quantity+=1;
+ 
+    this.setState({
+      cart: this.state.cart
+    });
+   }
 
-   this.setState({
-     cart: cart
-   });
-  }
+  // deleteQuantityInCart = (id) => {
+  //   let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
+  //   let obj = this.state.cart.find(item => item.id === id) //obj in cart
+  //   let cart
+  //   if (obj.quantity !== 0) {
+  //     obj.quantity -= 1;
+  //     cart = this.state.cart.splice(indexOfItemInArray, 1, obj);
+  //   } else {
+  //     // delete the obj from the cart
+  //     cart = this.state.cart.splice(indexOfItemInArray, 1)
+  //   }
 
-  // --- 測試中 ---
+  //   this.setState({
+  //     cart: cart
+  //   })  
+  // }
 
 
+  
   render() {
+    
     console.log(this.state.cart)
+    console.log(this.state.cart.length)
+
     return (
       <div>
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItemToSelection={this.addDrinkItemToSelection}/>
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
-                        addQuantityInCart={this.addQuantityInCart}
+                        addQuantityInCart={this.addQuantityInCart} deleteQuantityInCart={this.deleteQuantityInCart}
           />
         </div>  
         <Select
