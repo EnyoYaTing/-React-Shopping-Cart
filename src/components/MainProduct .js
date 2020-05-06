@@ -74,15 +74,6 @@ class MainProduct extends Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-    // let check = this.state.ingredient.map(list => {
-    //   return(
-    //     (list.isChecked) ? `${list.value} ` : '' 
-    //   );
-    // })
-
-    // let ice = this.state.slecIce;
-    // let sugar = this.state.slecSugar;
-    // alert('A name was submitted: ' + " " + ice + " " + sugar + " " + check);
   }
   
   // handle Drink Quantity
@@ -124,21 +115,33 @@ class MainProduct extends Component {
   addQuantityInCart = (id) =>{
     let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
     this.state.cart[indexOfItemInArray].quantity+=1;
- 
+    
     this.setState({
       cart: this.state.cart
     });
    }
 
+  // deleteQuantityInCart = (id) => {
+  //   let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
+  //   let cart = this.state.cart;
+
+  //   if (cart[indexOfItemInArray].quantity === 1) {
+  //     cart.splice(indexOfItemInArray, 1); //remove the item from the cart
+  //   }
+  //   else {
+  //     cart[indexOfItemInArray].quantity-=1;
+  //   } 
+
+  //   this.setState({
+  //     cart: cart
+  //   })
+  // }
+
   deleteQuantityInCart = (id) => {
     let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
     let cart = this.state.cart;
 
-    //remove the item from the cart
-    if (cart[indexOfItemInArray].quantity === 1) {
-      cart.splice(indexOfItemInArray, 1);  
-    }
-    else {
+    if (cart[indexOfItemInArray].quantity >= 1) {
       cart[indexOfItemInArray].quantity-=1;
     } 
 
@@ -147,6 +150,45 @@ class MainProduct extends Component {
     })
   }
 
+  addItemPriceInCart = (name) => {
+    let cart = this.state.cart;
+    let indexOfItemInArray = cart.findIndex(item => item.name === name); // index
+    let item = this.state.drinks.find( obj => obj.name === name);
+    
+    cart[indexOfItemInArray].price += item.price;
+
+    this.setState({
+      cart: cart
+    })
+  }
+
+  ReduceItemPriceInCart = (name) => {
+    let cart = this.state.cart;
+    let indexOfItemInArray = cart.findIndex(item => item.name === name); // index
+    let item = this.state.drinks.find( obj => obj.name === name);
+
+    if (cart[indexOfItemInArray].price >= item.price) {
+      cart[indexOfItemInArray].price -= item.price;
+    }
+    
+    this.setState({
+      cart: cart
+    })
+  }
+
+  RemoveItemFromCart = (id) => {
+    let cart = this.state.cart;
+    let indexOfItemInArray = cart.findIndex(item => item.id === id); // index
+    
+    if (cart[indexOfItemInArray].quantity === 0) {
+      cart.splice(indexOfItemInArray, 1); //remove the item from the cart
+    }
+    
+    this.setState({
+      cart: cart
+    })
+  }
+  
 
   
   render() {
@@ -159,7 +201,9 @@ class MainProduct extends Component {
         <div className="main-container">
           <Products drinks={this.state.drinks} openSelection={this.openSelection} addDrinkItemToSelection={this.addDrinkItemToSelection}/>
           <ShoppingCart cart={this.state.cart} totalPrice={this.state.totalPrice}
-                        addQuantityInCart={this.addQuantityInCart} deleteQuantityInCart={this.deleteQuantityInCart}
+                addQuantityInCart={this.addQuantityInCart} deleteQuantityInCart={this.deleteQuantityInCart}
+                addItemPriceInCart={this.addItemPriceInCart} ReduceItemPriceInCart ={this.ReduceItemPriceInCart }
+                RemoveItemFromCart={this.RemoveItemFromCart}
           />
         </div>  
         <Select

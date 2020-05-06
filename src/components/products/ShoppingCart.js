@@ -14,10 +14,10 @@ function ShoppingCart(props) {
             <div className="cart-grid">
                 <p className="left"> {id} {name} </p> 
                 <div className="inline">
-                  <button onClick={()=>props.deleteQuantityInCart(id)}> - </button>
+                  <button onClick={()=> {props.deleteQuantityInCart(id); props.ReduceItemPriceInCart(name); props.RemoveItemFromCart(id)} }> - </button>
                   <p> {quantity} </p>
                   {/* <button onClick={props.addQuantityInCart(id)}> + </button> 造成error Maximum update depth exceeded” */}
-                  <button onClick={() => props.addQuantityInCart(id)}> + </button>
+                  <button onClick={() => {props.addQuantityInCart(id); props.addItemPriceInCart(name)} }> + </button>
                 </div>
                 <p className="right"> NT$ {price} </p>
             </div>      
