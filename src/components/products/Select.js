@@ -6,7 +6,6 @@ import Checkbox from './Checkbox';
 function Select(props) {
   let selection = props.showSelection ? 1 : 0;
   let ice = props.ice.map((option)=>{
-    
     return(
       <Radio key={option.id} id={option.id} value={option.value} 
             ischecked={props.slecIce === option.value} onChange={props.onIceRadioChange}
@@ -15,7 +14,6 @@ function Select(props) {
   })
 
   let sugar = props.sugar.map((option)=>{
-    
     return(
       <Radio key={option.id} id={option.id} value={option.value} 
             ischecked={props.slecSugar === option.value} onChange={props.onSugarRadioChange}
@@ -54,9 +52,8 @@ function Select(props) {
                 <button onClick={props.deleteDrinkQuantity}> - </button>
                 <p> <strong> {props.drinkQuantity} </strong> </p>
                 <button onClick={() => {props.addDrinkQuantity()}}> + </button>
-                <button disabled={!props.drinkQuantity} onClick={()=> {props.closeSelection(); 
-                      props.addToCart(props.drinkId, props.drinkItem, props.singleDrinkTotal, props.singleDrinkTotalPrice, 
-                      props.iceList, props.sugarList)}
+                <button disabled={!props.drinkQuantity} 
+                        onClick={()=> {props.addToCart(); props.closeSelection()}
                 }> 
                   確認
                 </button>
