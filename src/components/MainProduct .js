@@ -108,8 +108,7 @@ class MainProduct extends Component {
 
   // handle item in cart
   addToCart = () => {
-    // let id = this.state.selectedItem.id;
-    let id = this.state.cart.length;
+    let id = this.state.cart.length; // give an new id for each item 
     let name = this.state.selectedItem.name;
     let quantity = this.state.drinkQuantity;
     let sugar = this.state.slecSugar;
@@ -131,22 +130,22 @@ class MainProduct extends Component {
     });
    }
 
-  // deleteQuantityInCart = (id) => {
-  //   let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
-  //   let obj = this.state.cart.find(item => item.id === id) //obj in cart
-  //   let cart
-  //   if (obj.quantity !== 0) {
-  //     obj.quantity -= 1;
-  //     cart = this.state.cart.splice(indexOfItemInArray, 1, obj);
-  //   } else {
-  //     // delete the obj from the cart
-  //     cart = this.state.cart.splice(indexOfItemInArray, 1)
-  //   }
+  deleteQuantityInCart = (id) => {
+    let indexOfItemInArray = this.state.cart.findIndex(item => item.id === id); // index
+    let cart = this.state.cart;
 
-  //   this.setState({
-  //     cart: cart
-  //   })  
-  // }
+    //remove the item from the cart
+    if (cart[indexOfItemInArray].quantity === 1) {
+      cart.splice(indexOfItemInArray, 1);  
+    }
+    else {
+      cart[indexOfItemInArray].quantity-=1;
+    } 
+
+    this.setState({
+      cart: cart
+    })
+  }
 
 
   
