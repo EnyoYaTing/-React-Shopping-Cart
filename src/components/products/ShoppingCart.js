@@ -1,4 +1,5 @@
 import React from 'react';
+import './Products.css';
 
 function ShoppingCart(props) {
   const LEN = props.cart.length;
@@ -12,11 +13,10 @@ function ShoppingCart(props) {
         return (
           <div key={id}>
             <div className="cart-grid">
-                <p className="left"> {id} {name} </p> 
+                <p className="left"> {name} </p> 
                 <div className="inline">
-                  <button onClick={()=> {props.deleteQuantityInCart(id); props.ReduceItemPriceInCart(name); props.RemoveItemFromCart(id)} }> - </button>
+                  <button onClick={()=> {props.deleteQuantityInCart(id); props.reduceItemPriceInCart(name); props.removeItemFromCart(id)} }> - </button>
                   <p> {quantity} </p>
-                  {/* <button onClick={props.addQuantityInCart(id)}> + </button> 造成error Maximum update depth exceeded” */}
                   <button onClick={() => {props.addQuantityInCart(id); props.addItemPriceInCart(name)} }> + </button>
                 </div>
                 <p className="right"> NT$ {price} </p>
@@ -44,7 +44,7 @@ function ShoppingCart(props) {
             <p className="thick"> Total: </p>
           </div>
           <div className="right">  
-            <p className="thick"> NT$ 0 </p>  
+            <p className="thick"> NT$ {props.totalPrice} </p>  
           </div>
         </div>  
       );
@@ -65,7 +65,7 @@ let RenderEmptyCart = () => {
         <div className="right">  
           <p className="thick"> NT$ 0 </p>  
         </div>
-      </div>
+    </div>
   );
 }
 

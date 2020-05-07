@@ -1,8 +1,31 @@
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
+* {
+  box-sizing: border-box;
 }
 
+/* For mobile phones: */
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+/* [class*="col-"] {
+  width: 100%;
+} */
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .col-1 {width: 8.33%;}
@@ -19,15 +42,12 @@
   .col-12 {width: 100%;}
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .row::after {
   content: "";
   clear: both;
   display: block;
 }
+
 
 hr .line {
   border: 0;
@@ -47,7 +67,7 @@ hr .line {
     z-index: 1000;
     padding-top: 25px;
     padding-bottom: 20px; 
-    background-color: #FF8888;
+    background-color: pink;
     color: white;
     font-size: 20px;
     font-family: 'Luckiest Guy', cursive;
@@ -58,154 +78,10 @@ hr .line {
 /*********************
  *        Main       *
  *********************/
-.main-container {
+/* .main-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
-}
+} */
 
-/*********************
- *      Product       *
- *********************/
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 300px;
-  height: 200px;
-  margin: auto;
-  text-align: left;
-  font-family: arial;
-  /* grid */
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-column-gap: 50px;
-  padding: 20px 20px;
-}
 
-.card button {
-  background-color: #FF88C2;
-  border: none;
-  text-align: center;
-  padding: 10px 32px;
-}
-
-.card button:hover {
-  background-color: #FF0088;
-}
-
-.card-horzontal {
-  padding: 10px 10px;
-  display: inline-block; /* For Horizontal */
-}
-
-/*********************
- *      Select       *
- *********************/
-.selection {
-  position: fixed; /* Sit on top of the page content */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-}
-
-.select-card {
-  /* sitting on the center */
-  position: absolute; 
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: white;
-  width: 500px;
-  margin: auto;
-  font-family: arial;
-  padding: 30px;
-}
-
-.title-grid {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-
-.title1 {
-  font-size: large;  
-}
-
-.title2 {
-  text-align: right;
-}
-
-.select-button-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 2fr;
-}
-
-.select-button-grid p {
-  text-align: center;
-}
-
-/*********************
- *   Shopping Card   *
- *********************/
-.shoppingCart {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-  background-color: white;
-  padding: 30px 20px 20px 20px;
-}
-
-.cart-title {
-  text-align: center;
-  
-}
-
-p.thick {
-  font-weight: bold;
-  font-size: 120%;
-}
-
-p.light {
-  font-weight: lighter;
-  font-size: 90%;
-}
-
-.shoppingCart .left {
-  text-align: left;
-  float: left;
-}
-
-.shoppingCart .right {
-  text-align: right;
-  float: right;
-}
-
-.cart-grid {
-  display: grid;
-  /* grid-template-columns: auto auto auto auto auto; */
-  grid-template-columns: auto auto auto;
-}
-
-.inline {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  text-align: center;
-}
-
-.inline button {
-  background-color: #FF88C2;
-  border: none;
-  text-align: center;
-  margin: 10px 10px 10px 10px;
-  border-radius: 4px;
-  /* padding: 5px 5px; */
-}
-
-.inline button:hover {
-  background-color: #FF0088;
-}
 

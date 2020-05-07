@@ -1,0 +1,9 @@
+Layout    
+    homepage
+    catagory /product
+        js
+        css /scss
+    search 
+    cart 
+    checkout
+static 

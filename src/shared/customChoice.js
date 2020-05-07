@@ -15,8 +15,8 @@ export const SUGAR = [
 
 
 export const INGREDIENT = [
-  { id: 1, value:'珍珠', isChecked: false},
-  { id: 2, value:'蘆薈', isChecked: false},
-  { id: 3, value:'椰果', isChecked: false},
-  { id: 4, value: '仙草', isChecked: false}
+  { id: 1, value:'珍珠', price: 10, isChecked: false},
+  { id: 2, value:'蘆薈', price: 10, isChecked: false},
+  { id: 3, value:'椰果', price: 10, isChecked: false},
+  { id: 4, value:'仙草', price: 5, isChecked: false}
 ]

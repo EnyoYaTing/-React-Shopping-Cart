@@ -1,6 +1,7 @@
 import React from 'react';
 import Radio from './Radio';
 import Checkbox from './Checkbox';
+import './Products.css';
 
 
 function Select(props) {
@@ -23,7 +24,7 @@ function Select(props) {
 
   let ingredient = props.ingredient.map((option) => {
     return(
-      <Checkbox key={option.id} id={option.id} value={option.value} 
+      <Checkbox key={option.id} id={option.id} value={option.value} price={option.price}
                 ischecked={option.isChecked} handleCheckbox={props.handleCheckbox}
       />
     );
